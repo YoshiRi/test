@@ -1,78 +1,78 @@
-���������̑Ή�
+﻿困った時の対応
 RTLab
 
-0.�N��
-���̂�adomin�ł͂���Ȃ��̂� ���[�U�[��
-���[�U�[�Fnam
-pass�Fnamhoang
-�ł͂���܂��B
+0.起動
+何故かadominではいれないので ユーザーは
+ユーザー：nam
+pass：namhoang
+ではいります。
 
-�������̑�������邽�߂�
+もろもろの操作をするために
 $su
 pass:robolab
-�Ƒł��ăX�[�p�[���[�U�[�����܂��傤�B
+と打ってスーパーユーザー化しましょう。
 
-�t�H���_��nam/2014�`�`/rtlab-�`/demo/ri_test�Ƃ����Ȃ�
+フォルダはnam/2014～～/rtlab-～/demo/ri_testとかかなぁ
 
 
-�@rtlinux�Ȃǂ̃R�}���h���ʂ�Ȃ�
-�R�}���h��T���K�v������B
-��{�I�ɂ�/usr/bin�ȂǂƂ��������ɂ��邪��������
+①rtlinuxなどのコマンドが通らない
+コマンドを探す必要がある。
+基本的には/usr/binなどといった所にあるが困ったら
 $find -name hogehoge
-�ꉞrtlinux�֘A�̃R�}���h��root/.bash_profile������Ə����Ă���B
-�Ƃɂ���rtlinux�Ƒł��ăG���[�o����
+一応rtlinux関連のコマンドはroot/.bash_profileを見ると書いてある。
+とにかくrtlinuxと打ってエラー出たら
 $source /root/.bash_profile
-��PATH���ʂ�B
+でPATHが通る。
 
-rtlinux�R�}���h�̏ꏊ
+rtlinuxコマンドの場所
 /usr/src/rtlinux-3.2,pre-2/scripts
-����̎��͂�������PATH��ʂ��B
+万一の時はここからPATHを通す。
 
 
-��PATH�̎蓮�ł̒ʂ���
-$PATH=$PATH:�f�B���N�g��
+＊PATHの手動での通し方
+$PATH=$PATH:ディレクトリ
 $export PATH
-�ƌ����悤�Ƀp�X��ʂ��B
-�������C����̓��O�A�E�g����Ə����Ă��܂��̂Œ���
+と言うようにパスを通す。
+ただし，これはログアウトすると消えてしまうので注意
 
 
-�A��Βl�̍��W�����������B
-/../include/ROBOT_ABS.h�Ƃ����t�@�C���̒��̒l�𒲐�����K�v������B
-���{�b�g�̃��[�^�[�M�A�͈������4000��ł���i�͂��j
-������̃M�A��360�������艽��]���邩�Ƃ����̂������ɂ���͂��ł���B
-EXCEL�Ȃǂł��傢���傢�����Ă����ăt�@�C���̒l���蓖���莟�撲�����Ă����B
+②絶対値の座標がおかしい。
+/../include/ROBOT_ABS.hというファイルの中の値を調整する必要がある。
+ロボットのモーターギアは一周分で4000回である（はず）
+こちらのギアが360°あたり何回転するかというのが資料にあるはずである。
+EXCELなどでちょいちょい直していってファイルの値を手当たり次第調整していく。
 
-�i/../module ���ւƁj
+（/../module 内へと）
 $cd ../../module/
 $make clean
 $make
 $make rmmod
 $make insmod
-�i/../include ���ւƁj
+（/../include 内へと）
 $cd demo/RTLabapplic
-�f�o�b�O�\�t�g�@��
+デバッグソフト機動
 $./RTLabApplic 
 
 
-�BRTLabApplic�g����
-�܂��� 4.Open
-���� 1.ServoOn
-�`�`
-2.ServoOff����
-5.Close���Ă���
-99.Exit���邱�ƁB
-������Ȃ���Ό�ōăr���h����K�v������B
+③RTLabApplic使い方
+まずは 4.Open
+次に 1.ServoOn
+～～
+2.ServoOffして
+5.Closeしてから
+99.Exitすること。
+これやらなければ後で再ビルドする必要がある。
 
 
-�C����̖��
-Cartesian �œ����Ȃ���`�`
-�ݒ肪�Ԉ���Ă��ł���ˁ`
-�ł��K��̂�ł͓����̂��B�Ƃ������Ƃōŏ���
-�i0 0.2 0.2 0 -0.4 0�jrad
-�ɓ����Ă�����Ă�����̂͂ǂ����낤�B
+④現状の問題
+Cartesian で動かないよ～～
+設定が間違ってるんですよね～
+でも規定のやつでは動くのだ。ということで最初に
+（0 0.2 0.2 0 -0.4 0）rad
+に動いてもらってからやるのはどうだろう。
 
-�֌W����܂���ł����B���ʂɌ��݂̈ꂩ�瓮�����΂�낵�B
-����Ƒ��֐߂�roll�����̃��[�^�������������B�|���B
+関係ありませんでした。普通に現在の一から動かせばよろし。
+それと第二関節のroll方向のモータ動きおかしい。怖い。
 
 
 
