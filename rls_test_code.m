@@ -15,7 +15,7 @@ a1 = -1.5;
 a2 = 0.7;
 b1 = 1.0;
 b2 = 0.5;
-Answer = [- a1,- a2,b1,b2];
+Answer = [a1,a2,b1,b2];
 
 %% setup
 Len = 100;
@@ -45,11 +45,11 @@ for i = 3:Len
     x(i) = - a1 * x(i-1) - a2 * x(i-2) + b1 * u(i-1) + b2 * u(i-2);
     y(i) = x(i) + v(i);
     % The val pushed to the RLS estimater
-    Zn = [y(i-1); y(i-2); u(i-1); u(i-2)];
+    Zn = [-y(i-1); -y(i-2); u(i-1); u(i-2)];
     Yn = [y(i)];
     % Estimation
-    estimater.estimate(Yn,Zn);
-    est(i,:) = ( estimater.Theta )';
+    Theta = estimater.estimate(Yn,Zn);
+    est(i,:) = Theta ';
 end
 
 %%
