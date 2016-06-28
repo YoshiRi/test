@@ -24,7 +24,7 @@ classdef rls_const < handle
         
         % constructer
         function obj = rls_const(n)
-           obj.Theta = zeros(2*n);
+           obj.Theta = zeros(2*n,1);
            % Define alpha = 1000;
            obj.Pn = 1000 * eye(2*n);
            % forgetting factor

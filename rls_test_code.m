@@ -49,7 +49,7 @@ for i = 3:Len
     Yn = [y(i)];
     % Estimation
     Theta = estimater.estimate(Yn,Zn);
-    est(i,:) = Theta ';
+    est(i,:) = Theta' ;
 end
 
 %%
