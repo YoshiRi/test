@@ -39,7 +39,7 @@ classdef rls_const < handle
         end
         
         % Updating
-        function estimate(obj,Yn,Zn)
+        function Estimated = estimate(obj,Yn,Zn)
             % Updating forgetting factor
             obj.Rho = (1 - 0.01) * obj.Rho + 0.01;
             % Prepare for caluclate 
@@ -50,13 +50,10 @@ classdef rls_const < handle
             obj.Pn = 1/ obj.Rho * ( obj.Pn - (obj.Pn * Zn * (Zn.') * obj.Pn / Num) );
             % Update Estimation
             obj.Theta = obj.Theta + Ln * En;
+            % Output
+            Estimated = obj.Theta;
         end
         
-        
-        % Outputrls
-        function Theta = Out(obj)
-            Theta = obj.Theta;
-        end
     end
     
 end
