@@ -31,7 +31,7 @@ est = zeros(Len,4);
 %% estimation
 Est_0 = zeros(2*n,1);
 % In this case we have 2 dim
-estimater = rls_const(2);
+estimater = rls_const(2,0.99);
 % If you want, you can set your original initial value for estimation
 estimater.reinitialize(zeros(2*n,1),1000*eye(2*n),0.99);
 
